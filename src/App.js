@@ -50,6 +50,7 @@ function App() {
         reviewTodo={reviewTodo}
         reviewTodos={reviewTodos}
         setReviewTodos={setReviewTodos}
+        setReviewTodo={setReviewTodo}
         done={done}
         setDone={setDone}
         dones={dones}

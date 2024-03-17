@@ -2,29 +2,38 @@ import React from "react";
 import styled from "styled-components";
 import { TbMessage } from "react-icons/tb";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
-
+import { Draggable } from "react-beautiful-dnd";
 
 export const TodoCard = ({ id, title, No_of_message, index }) => {
   console.log(id, index, "id");
 
   return (
-    <TODOCARD>
-      <div className="main">
-        <input type="range" />
-        <p>{title}</p>
+    <Draggable draggableId={`${id}`} key={id} index={index}>
+      {(provided, snapshot) => (
+        <TODOCARD
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          ref={provided.innerRef}
+          isDragging={snapshot.isDragging}
+        >
+          <div className="main">
+            <input type="range" />
+            <p>{title}</p>
 
-        <div className="icon">
-          <span>
-            <HiOutlineMenuAlt2 />
-          </span>{" "}
-          <span>
-            <TbMessage />
-            <span>{No_of_message}</span>
-          </span>
-        </div>
-      </div>
-     
-    </TODOCARD>
+            <div className="icon">
+              <span>
+                <HiOutlineMenuAlt2 />
+              </span>{" "}
+              <span>
+                <TbMessage />
+                <span>{No_of_message}</span>
+              </span>
+            </div>
+          </div>
+          {provided.placeholder}
+        </TODOCARD>
+      )}
+    </Draggable>
   );
 };
 const TODOCARD = styled.div`

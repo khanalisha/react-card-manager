@@ -121,7 +121,6 @@ export const Dashboard = ({
     }
   }
 
-    
   function findItemById(id, array) {
     // console.log(id, array, "findItemById");
     return array.find((item) => item.id == id);
@@ -316,12 +315,12 @@ export const Dashboard = ({
                 </div>
                 <div className="add-todo">
                   {!isOpen ? (
-                    <>
+                    <div onClick={handleOpen}>
                       <span>
                         <FiPlus onClick={handleOpen} />
                       </span>
                       <span>Add a card</span>
-                    </>
+                    </div>
                   ) : (
                     <DoneAddTodo
                       done={done}
