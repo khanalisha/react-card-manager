@@ -65,9 +65,6 @@ export const AddTodo = ({
   );
 };
 const ADDTODO = styled.div`
-  input {
-    /* margin-left: 2rem; */
-  }
   .add-btn {
     border-radius: 5px;
   }
