@@ -7,7 +7,7 @@ Utilize React to build the provided UI within the given time frame of 2-3 hours.
 ### Instructions
 Development Time Allocation: Allocate 2-3 hours to complete the development. This helps assess efficiency and delivery speed.
 
-## Live link
+## Live link  
 
 ### Design Image
 ![image](https://github.com/khanalisha/react-card-manager/assets/123863034/1b81edeb-807e-4c88-823a-6679c69356a9)
