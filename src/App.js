@@ -47,6 +47,13 @@ function App() {
         setProgressTodo={setProgressTodo}
         progressTodos={progressTodos}
         setProgressTodos={setProgressTodos}
+        reviewTodo={reviewTodo}
+        reviewTodos={reviewTodos}
+        setReviewTodos={setReviewTodos}
+        done={done}
+        setDone={setDone}
+        dones={dones}
+        setDones={setDones}
         id={"1"}
       />
     </div>
