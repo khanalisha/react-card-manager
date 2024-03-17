@@ -51,7 +51,86 @@ export const Dashboard = ({
     setIsOpenToDO(true);
   };
 
-  const handleDragEnd = () => {};
+  const handleDragEnd = (result) => {
+    console.log(result);
+    const { destination, source, draggableId } = result;
+    console.log(destination, "details");
+    // if (!destination) return;
+
+    deletePreviousState(source.droppableId, draggableId);
+
+    //GET DATA
+
+    const task = findItemById(draggableId, [
+      ...Todos,
+      ...progressTodos,
+      ...reviewTodos,
+      ...dones,
+    ]);
+    console.log(task, "task GET");
+    console.log(source.droppableId, draggableId, "func");
+    setNewState(destination.droppableId, task);
+    console.log(destination.droppableId, task, "taskdata");
+
+    // console.log(Todos, progressTodos, reviewTodos, dones, "checkupdates");
+  };
+
+  function deletePreviousState(sourceDroppableId, draggableId) {
+    //Error Here
+    console.log("sourceDroppableId:", sourceDroppableId);
+    console.log("taskId:", draggableId);
+    switch (sourceDroppableId) {
+      case "1":
+        // console.log("Before deleting from Todos:", Todos);
+        setTodos(removeItemById(draggableId, Todos));
+        // console.log("After deleting from Todos:", Todos);
+        break;
+      case "2":
+        setProgressTodos(removeItemById(draggableId, progressTodos));
+        break;
+      case "3":
+        setReviewTodos(removeItemById(draggableId, reviewTodos));
+        break;
+      case "4":
+        setDones(removeItemById(draggableId, dones));
+        break;
+    }
+  }
+
+  function setNewState(destinationDroppableId, task) {
+    console.log(destinationDroppableId, task, "new id"); //Error Here
+    let updatedTask;
+    switch (destinationDroppableId) {
+      case "1": // TO DO
+        updatedTask = { ...task, completed: false };
+        setTodos([updatedTask, ...Todos]);
+        break;
+      case "2": //Progress
+        updatedTask = { ...task, completed: true };
+        // console.log(updatedTask, "CASE 1");
+        setProgressTodos([updatedTask, ...progressTodos]);
+        break;
+      case "3": // IN REVIEW
+        updatedTask = { ...task, completed: false };
+        setReviewTodos([updatedTask, ...reviewTodos]);
+        break;
+      case "4": // done
+        updatedTask = { ...task, completed: false };
+        setDones([updatedTask, ...dones]);
+        break;
+    }
+  }
+
+    
+  function findItemById(id, array) {
+    // console.log(id, array, "findItemById");
+    return array.find((item) => item.id == id);
+  }
+
+  function removeItemById(id, array) {
+    return array.filter((item) => item.id != id);
+    // console.log(val, "individualTODO");
+  }
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
